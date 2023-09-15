@@ -2,8 +2,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  background-image: url("../../assets/images/backgroudImage3.jpg");
+  background-size: cover;
 }
 
 .headerTitle {
-  color: red;
+  color: black;
+  font-size: 3vh;
+}
+
+.headerSearcher {
+  &__inputAndButton {
+    display: flex;
+    margin-bottom: 1vh;
+    gap: 10px;
+  }
+
+  &__sorting {
+
+  }
+
+  &__categories {
+
+  }
 }

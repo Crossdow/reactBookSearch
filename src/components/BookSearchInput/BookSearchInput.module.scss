@@ -1,0 +1,32 @@
+.myInputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .myBookSearchInput {
+    width: 30vw;
+    padding: 8px;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    background-color: #f3f3f3;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .myInputWrapper {
+    .myBookSearchInput {
+      width: 80vw;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px){
+  .myInputWrapper {
+    .myBookSearchInput {
+      width: 40vw;
+    }
+  }
+}
+

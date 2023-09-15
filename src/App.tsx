@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import BooksList from "./components/BooksList/BooksList";
-import Header from "./components/Header/Header";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <BooksList />
+      <AppRoutes/>
     </div>
   );
 }

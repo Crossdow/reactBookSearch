@@ -11,24 +11,25 @@ export default class BookLoaderService {
   private async requestSender(url: string): Promise<any> {
     try {
       const response = await fetch(url);
-
-      return await response.json();
+      const data = await response.json();
+      console.log(data)
+      return data;
     } catch (error) {
       throw error;
     }
   }
 
-  async loadBooks(request: string, idx: number = 0): Promise<any> {
+  async loadBooks(request: string, idx: number, category: string , sorting: string): Promise<any> {
     const queryParams = {
-      q: request,
+      orderBy: sorting,
       startIndex: idx,
       maxResults: 30,
       key: this._apiKey,
     };
     const queryStringParams = queryString.stringify(queryParams);
-    const url = `${this._apiAddress}?${queryStringParams}`;
+    const url = `${this._apiAddress}?q=${request}${category !== 'all' ? `+subject:${category}` : ""}&${queryStringParams}`;
 
-    return this.requestSender(url);
+    return await this.requestSender(url);
   }
 
   async loadBookInfo(bookId: number): Promise<any> {
