@@ -13,7 +13,7 @@ const BookSearchInput: React.FC<BookSearchInputProps> = ({ query, setQuery, hand
   };
 
   const handlePressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && query.trim() !== '') {
       handleSearch();
     }
   }

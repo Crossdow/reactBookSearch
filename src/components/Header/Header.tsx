@@ -19,20 +19,24 @@ const Header = observer(() => {
           <BookSearchButton handleSearch={handleSearch} />
         </div>
 
-        <div className={classes.headerSearcher__categories}>
-          <select value={selectedCategory} onChange={(e) => setCategory(e.target.value)}>
-            {categories.map(category => (
-              <option key={category} value={category}>{category}</option>
-            ))}
-          </select>
-        </div>
+        <div className={classes.headerWrapper}>
+          <div className={classes.headerSearcher__categories}>
+            <p>Categories</p>
+            <select className={classes.mySelect} value={selectedCategory} onChange={(e) => setCategory(e.target.value)}>
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
 
-        <div className={classes.headerSearcher__sorting}>
-          <select value={selectedSortingOption} onChange={(e) => setSortingOption(e.target.value)}>
-            {sortingOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
+          <div className={classes.headerSearcher__sorting}>
+            <p>Sorting by</p>
+            <select className={classes.mySelect} value={selectedSortingOption} onChange={(e) => setSortingOption(e.target.value)}>
+              {sortingOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
       </div>

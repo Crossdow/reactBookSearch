@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from "./BookCard.module.scss";
+import coverFallback from "../../assets/images/book-cover-fallback.png"
+import {Link} from "react-router-dom";
 
 type Props = {
   title: string
@@ -10,18 +12,20 @@ type Props = {
 }
 
 const BookCard: React.FC<Props> = ({title, authors, categories, image, id}) => {
+  const imagePath = image ? image : coverFallback;
+
   return (
     <li className={classes.myBookCard}>
-      <a href={`/book/${id}`}>
-        <div>
-          <img src={image ? image : 'добавить заглушку'} alt=""/>
-        </div>
-      </a>
-      {categories && <div>{categories}</div>}
-      <a href={`/book/${id}`}>
+      <div className={classes.myBookCard__image}>
+        <Link to={`/book/${id}`}>
+          <img src={imagePath} alt=""/>
+        </Link>
+      </div>
+      {categories && <div className={classes.myBookCard__categories}>{categories}</div>}
+      <Link to={`/book/${id}`} className={classes.myBookCard__title}>
         {title}
-      </a>
-      {authors && <div>{authors}</div>}
+      </Link>
+      {authors && <div className={classes.myBookCard__authors}>{authors}</div>}
     </li>
   );
 };

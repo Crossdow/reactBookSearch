@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './BookSearchButton.module.scss'
 
 interface BookSearchButtonProps {
   handleSearch: () => void;
@@ -6,7 +7,7 @@ interface BookSearchButtonProps {
 
 const BookSearchButton: React.FC<BookSearchButtonProps> = ({ handleSearch }) => {
   return (
-    <button onClick={handleSearch}>
+    <button onClick={handleSearch} className={classes.myBookSearchButton}>
       Search
     </button>
   );

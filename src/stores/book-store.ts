@@ -24,30 +24,38 @@ class BookStore {
   sortingOptions = ['relevance', 'newest'];
   selectedSortingOption = 'relevance';
   totalItems = 0;
+  showBooksList = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   handleSearch = async () => {
-    this.setIsLoading(true);
+    if (this.query.trim() !== '') {
+      this.setShowBooksList(true);
+      this.setIsLoading(true);
 
-    try {
-      const response = await this.loadBooks(this.query, this.startIndex, this.selectedCategory, this.selectedSortingOption);
+      try {
+        const response = await this.loadBooks(this.query, this.startIndex, this.selectedCategory, this.selectedSortingOption);
 
-      const booksData = response.items || [];
-      this.setTotalItems(response.totalItems);
-      this.setBooks(booksData);
-      this.setIsLoading(false);
-    } catch (error) {
-      console.error('Error loading books:', error);
-      this.setIsLoading(false);
+        const booksData = response.items || [];
+        this.setTotalItems(response.totalItems);
+        this.setBooks(booksData);
+        this.setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading books:', error);
+        this.setIsLoading(false);
+        this.setShowBooksList(false);
+      }
     }
   };
 
   loadMoreBooks = async () => {
     if (this.books.length === 0) return;
     this.setIsLoading(true);
+    setTimeout(()=> {
+      window.scrollTo(0, document.body.scrollHeight)
+    }, 0)
 
     try {
       const response = await this.loadBooks(this.query, this.startIndex + 30, this.selectedCategory, this.selectedSortingOption);
@@ -96,6 +104,10 @@ class BookStore {
 
   private setTotalItems = (totalItems: number) => {
     this.totalItems = totalItems;
+  };
+
+  private setShowBooksList = (show: boolean) => {
+    this.showBooksList = show;
   };
 }
 

@@ -6,6 +6,15 @@
     transform: rotate(360deg);
   }
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
 .loadingSpinner {
   width: 50px;
   height: 50px;
