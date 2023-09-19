@@ -25,6 +25,8 @@ class BookStore {
   selectedSortingOption = 'relevance';
   totalItems = 0;
   showBooksList = false;
+  bookId: string | undefined = '';
+  bookData: any = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -69,10 +71,29 @@ class BookStore {
     }
   };
 
+  handleSearchInfo = async () => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await this.loadBookInfo(this.bookId);
+
+      this.setBookData(response.volumeInfo);
+      this.setIsLoading(false);
+    } catch (error) {
+      console.error('Error loading info about book:', error);
+      return null;
+    }
+  }
+
   private loadBooks = async (request: string, idx: number, category: string , sorting: string) => {
     const bookLoader = new BookLoaderService();
     return await bookLoader.loadBooks(request, idx, category, sorting);
   };
+
+  loadBookInfo = async (bookId: string | undefined) => {
+    const bookData = new BookLoaderService();
+    return await bookData.loadBookInfo(bookId);
+  }
 
   public setQuery = (query: string) => {
     this.query = query;
@@ -109,6 +130,14 @@ class BookStore {
   private setShowBooksList = (show: boolean) => {
     this.showBooksList = show;
   };
+
+  setBookId = (bookId: string | undefined) => {
+    this.bookId = bookId;
+  }
+
+  private setBookData = (bookData: any) => {
+    this.bookData = bookData;
+  }
 }
 
 const bookStore = new BookStore();

@@ -10,7 +10,7 @@ const Header = observer(() => {
 
   return (
     <div className={classes.header}>
-      <h1 className={classes.headerTitle}>
+      <h1 className={classes.headerTitle} style={{fontSize: "42px"}}>
         Book Search
       </h1>
       <div className={classes.headerSearcher}>

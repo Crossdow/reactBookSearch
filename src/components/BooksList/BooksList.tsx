@@ -25,7 +25,7 @@ const BooksList = observer(() => {
                     key={book.id}
                     id={book.id}
                     title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors}
+                    authors={ book.volumeInfo.authors }
                     image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null}
                     categories={book.volumeInfo.categories}
                   />

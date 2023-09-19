@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./BookCard.module.scss";
 import coverFallback from "../../assets/images/book-cover-fallback.png"
 import {Link} from "react-router-dom";
+import {formatAuthorsList} from "../../utils/formatAuthorsList";
 
 type Props = {
   title: string
@@ -25,7 +26,7 @@ const BookCard: React.FC<Props> = ({title, authors, categories, image, id}) => {
       <Link to={`/book/${id}`} className={classes.myBookCard__title}>
         {title}
       </Link>
-      {authors && <div className={classes.myBookCard__authors}>{authors}</div>}
+      {authors && <div className={classes.myBookCard__authors}>{authors.length > 1 ? formatAuthorsList(authors) : authors}</div>}
     </li>
   );
 };

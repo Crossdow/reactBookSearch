@@ -11,9 +11,8 @@ export default class BookLoaderService {
   private async requestSender(url: string): Promise<any> {
     try {
       const response = await fetch(url);
-      const data = await response.json();
-      console.log(data)
-      return data;
+
+      return await response.json();
     } catch (error) {
       throw error;
     }
@@ -32,7 +31,7 @@ export default class BookLoaderService {
     return await this.requestSender(url);
   }
 
-  async loadBookInfo(bookId: number): Promise<any> {
+  async loadBookInfo(bookId: string | undefined): Promise<any> {
     const queryParams = {
       key: this._apiKey,
     };

@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import BooksList from "../../components/BooksList/BooksList";
 
 const SearchScreen = () => {
+
   return (
     <div>
       <Header />
