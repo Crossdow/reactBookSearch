@@ -1,0 +1,7 @@
+@import '../../utils/common-styles';
+
+.myBookScreenInfo__backButton {
+  display: flex;
+  justify-content: left;
+  border-bottom: $borderColor;
+}

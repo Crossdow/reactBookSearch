@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import classes from "./BookScreenContainer.module.scss";
 import { formatAuthorsList } from "../../../utils/formatAuthorsList";
 import BookInfoButton from "../../../components/UI/Buttons/BookInfoButton/BookInfoButton";
+import {Link} from "react-router-dom";
+import {toJS} from "mobx";
 
 interface Props {
   imagePath: string,
@@ -13,15 +15,20 @@ interface Props {
     pageCount: number,
     publisher: string,
     publishedDate: string,
-    language: string
+    language: string,
+    previewLink: string
   }
 }
 
 const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
-  const [info, setInfo] = useState<React.ReactNode>(<div className={classes.myAbout}>{bookData.description}</div>);
+  const [info, setInfo] = useState<React.ReactNode>(<div className={classes.myAbout}>{bookData.description ? bookData.description : 'Description of the book is not found.'}</div>);
+  const [activeButton, setActiveButton] = useState('about');
+
+  console.log(toJS(bookData))
 
   const handleAboutClick = () => {
-    setInfo(<div>{bookData.description}</div>);
+    setInfo(<div>{bookData.description ? bookData.description : 'Description of the book is not found.'}</div>);
+    setActiveButton('about');
   }
 
   const handleCharacteristicClick = () => {
@@ -41,6 +48,7 @@ const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
         </div>
       </div>
     );
+    setActiveButton('characteristic');
   }
 
   return (
@@ -49,15 +57,21 @@ const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
         <img src={imagePath} alt={'bookImage'} />
       </div>
       <div className={classes.myBookInfoContainer}>
-        <h6>{bookData.categories}</h6>
-        <h1>{bookData.title}</h1>
-        <h6>
+        <h6 className={classes.myBookScreenContainer__categories}>{bookData.categories}</h6>
+        <h1 className={classes.myBookScreenContainer__title}>{bookData.title}</h1>
+        <h6 className={classes.myBookScreenContainer__authors}>
           { bookData.authors ? bookData.authors.length > 1 ? formatAuthorsList(bookData.authors) : bookData.authors : null}
         </h6>
-        <BookInfoButton onClick={handleAboutClick}>About</BookInfoButton>
-        <BookInfoButton onClick={handleCharacteristicClick}>Characteristic</BookInfoButton>
-        <div>{info}</div>
-        <button>Open in Google Books</button>
+        <div className={classes.myBookInfoButtonsContainer}>
+          <BookInfoButton onClick={handleAboutClick} active={activeButton === 'about'}>About</BookInfoButton>
+          <BookInfoButton onClick={handleCharacteristicClick} active={activeButton === 'characteristic'}>Characteristic</BookInfoButton>
+        </div>
+        <div className={classes.myBookScreenContainer__info}>{info}</div>
+        <div className={classes.myBookScreenContainer__google}>
+          <Link to={bookData.previewLink} target="_blank">
+            <button>Open in Google Books</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

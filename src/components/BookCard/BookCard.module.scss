@@ -1,3 +1,5 @@
+@import '../../utils/common-styles';
+
 .myBookCard {
   background-color: #c1caca;
   list-style: none;
@@ -20,24 +22,13 @@
   }
 
   &__categories {
-    margin: 0 15px;
+    @extend .categories;
     text-decoration: underline;
-    color: gray;
-    opacity: 0.5;
-    font-size: 14px;
   }
-
   &__title {
-    text-decoration: none;
-    margin: 1vh 15px;
-    display: block;
-    color: black;
-    font-weight: bold;
+    @extend .title;
   }
-
   &__authors {
-    margin: 0 15px 1vh 15px;
-    color: gray;
-    opacity: 0.8;
+    @extend .authors;
   }
 }

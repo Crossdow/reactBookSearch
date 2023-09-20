@@ -1,0 +1,22 @@
+$borderColor: 1px solid darkgrey;
+
+.categories {
+  margin: 0 15px;
+  font-size: 14px;
+  color: gray;
+  opacity: 0.5;
+}
+
+.title {
+  text-decoration: none;
+  margin: 1vh 15px;
+  display: block;
+  color: black;
+  font-weight: bold;
+}
+
+.authors {
+  margin: 0 15px 1vh 15px;
+  color: gray;
+  opacity: 0.8;
+}

@@ -16,7 +16,7 @@ const BooksList = observer(() => {
             <SpinLoader />
           ) : (
             <>
-              <p style={{marginBottom: '2vh', marginTop: '0.5vh', fontSize: '15px', fontStyle: 'italic'}}>
+              <p style={{marginBottom: '2vh', marginTop: '1vh', fontSize: '15px', fontStyle: 'italic'}}>
                 Found {totalItems} results
               </p>
               <ul className={classes.myBookList}>

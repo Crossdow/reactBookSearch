@@ -1,0 +1,31 @@
+@import '../../../../utils/common-styles';
+
+.myBackButton {
+  border: none;
+  border-right: $borderColor;
+  padding: 1vh 1.5vw;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateX(-5px);
+  }
+
+  &__arrow {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(-135deg);
+  }
+
+  &__text {
+    font-weight: lighter;
+    font-size: medium;
+  }
+}

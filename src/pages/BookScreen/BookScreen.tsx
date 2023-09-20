@@ -34,7 +34,7 @@ const BookScreen = observer(() => {
 
   }, [bookId, handleSearchInfo, setBookId]);
 
-  const image = bookData.imageLinks ? bookData.imageLinks.thumbnail : null;
+  const image = bookData.imageLinks ? bookData.imageLinks.thumbnail ? bookData.imageLinks.small : null : null;
   const imagePath = image ? image : coverFallback;
 
   return (
@@ -44,7 +44,9 @@ const BookScreen = observer(() => {
         <SpinLoader/>
       ) : (
         <div className={classes.myBookScreenInfo}>
-          <BackButton link={"/"} />
+          <div className={classes.myBookScreenInfo__backButton}>
+            <BackButton link={"/"} />
+          </div>
           <BookScreenContainer bookData={bookData} imagePath={imagePath} key={bookId} />
         </div>
       )}
