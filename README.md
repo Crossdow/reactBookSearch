@@ -35,7 +35,7 @@ The main goal of the project is to provide users with a convenient and efficient
 
 ## Installation and Setup:
 
-1. Clone the repository using the command `git clone https://github.com/username/book-search.git`.
+1. Clone the repository using the command `git clone https://github.com/username/book-search.git`
 2. Ensure that you have Node.js and npm installed.
-3. Install dependencies using the command `npm install`.
-4. Start the application using the command `npm start`.
+3. Install dependencies using the command `npm install`
+4. Start the application using the command `npm start`
