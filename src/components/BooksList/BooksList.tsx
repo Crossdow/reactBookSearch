@@ -34,7 +34,7 @@ const BooksList = observer(() => {
               {isLoading && books.length > 0 ? (
                 <SpinLoader />
               ) : (
-                <button onClick={loadMoreBooks} style={{cursor: "pointer", border: "1px solid black", borderRadius: "10px", padding: "10px", marginTop: "40px", marginBottom: "40px"}}>
+                <button onClick={loadMoreBooks} style={{cursor: "pointer", border: "1px solid black", borderRadius: "10px", padding: "10px", marginTop: "40px", marginBottom: "40px", background: "none"}}>
                   Load more
                 </button>
               )}

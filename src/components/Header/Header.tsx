@@ -31,7 +31,9 @@ const Header = observer(() => {
 
           <div className={classes.headerSearcher__sorting}>
             <p>Sorting by</p>
-            <select className={classes.mySelect} value={selectedSortingOption} onChange={(e) => setSortingOption(e.target.value)}>
+            <select className={classes.mySelect} value={selectedSortingOption} onChange={(e) => {
+              setSortingOption(e.target.value)
+            }}>
               {sortingOptions.map(option => (
                 <option key={option} value={option}>{option}</option>
               ))}

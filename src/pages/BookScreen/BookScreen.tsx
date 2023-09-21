@@ -34,8 +34,7 @@ const BookScreen = observer(() => {
 
   }, [bookId, handleSearchInfo, setBookId]);
 
-  const image = bookData.imageLinks ? bookData.imageLinks.thumbnail ? bookData.imageLinks.small : null : null;
-  const imagePath = image ? image : coverFallback;
+  let image = bookData.imageLinks ? bookData.imageLinks.thumbnail ? bookData.imageLinks.thumbnail : coverFallback : coverFallback;
 
   return (
     <div className={classes.myBookScreen}>
@@ -47,7 +46,7 @@ const BookScreen = observer(() => {
           <div className={classes.myBookScreenInfo__backButton}>
             <BackButton link={"/"} />
           </div>
-          <BookScreenContainer bookData={bookData} imagePath={imagePath} key={bookId} />
+          <BookScreenContainer bookData={bookData} imagePath={image} key={bookId} />
         </div>
       )}
     </div>

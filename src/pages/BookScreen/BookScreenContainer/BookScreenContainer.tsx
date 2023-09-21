@@ -3,7 +3,6 @@ import classes from "./BookScreenContainer.module.scss";
 import { formatAuthorsList } from "../../../utils/formatAuthorsList";
 import BookInfoButton from "../../../components/UI/Buttons/BookInfoButton/BookInfoButton";
 import {Link} from "react-router-dom";
-import {toJS} from "mobx";
 
 interface Props {
   imagePath: string,
@@ -21,13 +20,12 @@ interface Props {
 }
 
 const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
-  const [info, setInfo] = useState<React.ReactNode>(<div className={classes.myAbout}>{bookData.description ? bookData.description : 'Description of the book is not found.'}</div>);
+
+  const [info, setInfo] = useState<React.ReactNode>(<div className={classes.myAbout}>{bookData.description ? (<div dangerouslySetInnerHTML={{__html: bookData.description}}></div>) : 'Description of the book is not found.'}</div>);
   const [activeButton, setActiveButton] = useState('about');
 
-  console.log(toJS(bookData))
-
   const handleAboutClick = () => {
-    setInfo(<div>{bookData.description ? bookData.description : 'Description of the book is not found.'}</div>);
+    setInfo(<div className={classes.myAbout}>{bookData.description ? (<div dangerouslySetInnerHTML={{__html: bookData.description}}></div>) : 'Description of the book is not found.'}</div>);
     setActiveButton('about');
   }
 
@@ -54,7 +52,7 @@ const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
   return (
     <div className={classes.myBookScreenContainer}>
       <div className={classes.myBookImageContainer}>
-        <img src={imagePath} alt={'bookImage'} />
+        <img src={imagePath} alt={'bookImage'}/>
       </div>
       <div className={classes.myBookInfoContainer}>
         <h6 className={classes.myBookScreenContainer__categories}>{bookData.categories}</h6>
@@ -69,7 +67,7 @@ const BookScreenContainer: React.FC<Props> = ({ imagePath, bookData }) => {
         <div className={classes.myBookScreenContainer__info}>{info}</div>
         <div className={classes.myBookScreenContainer__google}>
           <Link to={bookData.previewLink} target="_blank">
-            <button>Open in Google Books</button>
+            <button className={classes.googleBtn}>Open in Google Books</button>
           </Link>
         </div>
       </div>

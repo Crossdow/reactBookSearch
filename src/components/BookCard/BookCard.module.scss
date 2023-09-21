@@ -1,7 +1,7 @@
 @import '../../utils/common-styles';
 
 .myBookCard {
-  background-color: #c1caca;
+  background-color: #e3e8e6;
   list-style: none;
   text-align: left;
 
@@ -11,7 +11,8 @@
 
     a {
       &:hover {
-        background-color: black;
+        transition: opacity 0.5s;
+        opacity: 0.3;
       }
 
       img {
